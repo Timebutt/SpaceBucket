@@ -11,7 +11,7 @@ First, make sure you Raspberry Pi can compile Python scripts.
 sudo apt-get install -y build-essential python-dev git
 ```
 
-Next, install the library
+Next, install the library:
 
 ```
 mkdir -p /home/pi/sources  
@@ -19,4 +19,9 @@ cd /home/pi/sources
 git clone https://github.com/adafruit/Adafruit_Python_DHT.git  
 cd Adafruit_Python_DHT  
 sudo python setup.py install 
+```
+
+The webcam uses the fswebcam library. Installation is pretty straightforward:
+```
+sudo apt-get install fswebcam
 ```
