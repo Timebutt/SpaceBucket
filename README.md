@@ -1,8 +1,13 @@
 # SpaceBucket
 Controlling a Space Bucket using a Raspberry Pi 2
 
+# Installation
 
-#Dependencies
+As always, make sure your Raspberry is healthy and up to date:
+```
+sudo apt-get update
+sudo apt-get upgrade
+```
 
 [Adafruit_Python_DHT](https://github.com/adafruit/Adafruit_Python_DHT) is required to read the DHT22/AM2302 temperature/humidity sensor.
 First, make sure you Raspberry Pi can compile Python scripts.
