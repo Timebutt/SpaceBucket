@@ -10,7 +10,7 @@ sudo apt-get upgrade
 ```
 
 [Adafruit_Python_DHT](https://github.com/adafruit/Adafruit_Python_DHT) is required to read the DHT22/AM2302 temperature/humidity sensor.
-First, make sure you Raspberry Pi can compile Python scripts.
+First, make sure your Raspberry Pi can compile Python scripts.
 
 ```
 sudo apt-get install -y build-essential python-dev git
