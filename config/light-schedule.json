@@ -1,0 +1,27 @@
+{
+	"UFO-LED": {
+		"enabled": true,
+		"GPIO-PIN": 5,
+		"growing": {
+			"on": "18:00:00",
+			"off": "10:00:00"
+		},
+		"flowering": {
+			"on": "18:00:00",
+			"off": "06:00:00"
+		}
+	},
+	
+	"LED-STRIP": {
+		"enabled": false,
+		"GPIO-PIN": 10,
+		"growing": {
+			"on": "18:00:00",
+			"off": "10:00:00"
+		},
+		"flowering": {
+			"on": "18:00:00",
+			"off": "06:00:00"
+		}
+	}	
+}
