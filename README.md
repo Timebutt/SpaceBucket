@@ -12,20 +12,14 @@ sudo apt-get upgrade
 ```
 
 [Adafruit_Python_DHT](https://github.com/adafruit/Adafruit_Python_DHT) is required to read the DHT22/AM2302 temperature/humidity sensor.
-First, make sure your Raspberry Pi can compile Python scripts.
+First, make sure your Raspberry Pi can compile Python scripts, and easily add Python packages through PIP.
 
 ```
-sudo apt-get install -y build-essential python-dev
+sudo apt-get install -y build-essential python-dev python-pip
 ```
-
-Next, install the library:
-
+Next, get the Python package:
 ```
-mkdir -p /home/pi/sources  
-cd /home/pi/sources  
-git clone https://github.com/adafruit/Adafruit_Python_DHT.git  
-cd Adafruit_Python_DHT  
-sudo python setup.py install 
+pip install adafruit_python_dht
 ```
 
 The webcam runs using the uv4l package. Installation is documented on the uv4l website, just to make things easier the instructions are repeated here as well:
