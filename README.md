@@ -19,10 +19,10 @@ sudo apt-get install -y build-essential python-dev python-pip
 ```
 Next, get the Python package:
 ```
-pip install adafruit_python_dht
+sudo pip install adafruit_python_dht
 ```
 
-The webcam runs using the uv4l package. Installation is documented on the uv4l website, just to make things easier the instructions are repeated here as well:
+The webcam runs using the [uv4l package](http://www.linux-projects.org/uv4l/). Installation on the Raspberry Pi is documented on the [uv4l website](http://www.linux-projects.org/uv4l/installation/), just to make things easier the instructions are repeated here as well:
 ```
 curl http://www.linux-projects.org/listing/uv4l_repo/lrkey.asc | sudo apt-key add -
 ```
