@@ -5,7 +5,7 @@ This repository will host all the code I currently use to run my own Space Bucke
 
 # Installation
 
-As always, make sure your Raspberry is healthy and up to date:
+The code supplied in this repository was tested on a Raspberry Pi running the Jessie Debian distribution. As always, before starting make sure your Raspberry is healthy and up to date:
 ```
 sudo apt-get update
 sudo apt-get upgrade
@@ -15,7 +15,7 @@ sudo apt-get upgrade
 First, make sure your Raspberry Pi can compile Python scripts.
 
 ```
-sudo apt-get install -y build-essential python-dev git
+sudo apt-get install -y build-essential python-dev
 ```
 
 Next, install the library:
@@ -28,7 +28,39 @@ cd Adafruit_Python_DHT
 sudo python setup.py install 
 ```
 
-The webcam uses the fswebcam library. Installation is pretty straightforward:
+The webcam runs using the uv4l package. Installation is documented on the uv4l website, just to make things easier the instructions are repeated here as well:
 ```
-sudo apt-get install fswebcam
+curl http://www.linux-projects.org/listing/uv4l_repo/lrkey.asc | sudo apt-key add -
+```
+Next, we need to add a new repository to the _/etc/apt/sources.list_ file:
+```
+sudo nano /etc/apt/sources.list
+```
+If you are on Raspbian Wheezy, add:
+```
+deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ wheezy main
+```
+
+If you are on Raspbian Jessie, add this line:
+```
+deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/ jessie main
+```
+Next, we can install the main uv4l package:
+```
+sudo apt-get update
+sudo apt-get install uv4l uv4l-server uv4l-webrtc
+```
+If you plan on using the Raspberry Pi Camera Module, the following lines will install the required driver and invoque the camera:
+```
+sudo apt-get install uv4l-raspicam
+uv4l --driver raspicam
+```
+In case you want to use a uvc compliant USB camera (I am using the Logitech C310 webcam), you first need to install the uvc driver:
+```
+sudo apt-get install uv4l-uvc
+```
+Next, you can use the ```lsusb``` command to find your specific device and find its device id. This [comprehensive list](http://www.linux-usb.org/usb.ids) can help to verify your device.
+```
+lsusb
+uv4l --driver uvc --device-id 046d:081b
 ```
