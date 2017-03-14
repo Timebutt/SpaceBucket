@@ -30,9 +30,8 @@ else if(!empty($_POST)) {
 		// Check if the value is different from the current state, and if so: execute BASH script and write JSON file
 		if($states[$key] != $value['value']) {
 
-			$result = ($value['value'] == true) ? 1 : 0;
-			exec("/usr/bin/gpio write " . $value['pin'] . ' ' . $result);
-			echo $value['description'] . ": GPIO pin " . $value['pin'] . " set to " . $result . "<br />";
+			exec("/usr/bin/gpio write " . $value['pin'] . ' ' . $value['value']);
+			echo $value['description'] . ": GPIO pin " . $value['pin'] . " set to " . $value['value'] . "<br />";
 		}
 	}
 

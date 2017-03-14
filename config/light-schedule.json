@@ -1,8 +1,8 @@
 {
-	"UFO-LED": {
+	"main_light": {
 		"enabled": true,
 		"GPIO-PIN": 5,
-		"growing": {
+		"vegetative": {
 			"on": "18:00:00",
 			"off": "10:00:00"
 		},
@@ -11,11 +11,11 @@
 			"off": "06:00:00"
 		}
 	},
-	
-	"LED-STRIP": {
+
+	"axiliary_light": {
 		"enabled": false,
 		"GPIO-PIN": 10,
-		"growing": {
+		"vegetative": {
 			"on": "18:00:00",
 			"off": "10:00:00"
 		},
@@ -23,5 +23,5 @@
 			"on": "18:00:00",
 			"off": "06:00:00"
 		}
-	}	
+	}
 }

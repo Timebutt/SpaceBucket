@@ -10,10 +10,10 @@ function writeToLog($line) {
 }
 
 // Read current configuration from configuration.json
-$str = file_get_contents('light-schedule.json');
+$str = file_get_contents('config/light-schedule.json');
 $schedule = json_decode($str, true);
 
-$str = file_get_contents('configuration.json');
+$str = file_get_contents('config/config.json');
 $configuration = json_decode($str, true);
 
 // Read current GPIO pin states
