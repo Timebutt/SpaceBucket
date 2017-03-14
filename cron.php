@@ -27,16 +27,17 @@ foreach($schedule as $key => $value) {
     if($value['enabled'] == true) {
 
         // Light is supposed to turn on right now
-        if(strtotime(date('H:i') - strtotime($value[$currentRegime]['on']) <= 60 && $states[$key] == 0) {
-            exec("/usr/bin/gpio write " . $configuration['GPIO'][$key]['pin'] . " " 1);
+        if(strtotime(date('H:i')) - strtotime($value[$currentRegime]['on']) <= 60 && $states[$key] == 0) {
+            exec("/usr/bin/gpio write " . $configuration['GPIO'][$key]['pin'] . " " . 1);
             writeToLog("GPIO pin " . $configuration['GPIO'][$key]['pin'] . " set to ON");
         }
 
-        else if(strtotime(date('H:i') - strtotime($value[$currentRegime]['off']) <= 60 && $states[$key] == 1) {
-            exec("/usr/bin/gpio write " . $configuration['GPIO'][$key]['pin'] . " " 0);
+        else if(strtotime(date('H:i')) - strtotime($value[$currentRegime]['off']) <= 60 && $states[$key] == 1) {
+            exec("/usr/bin/gpio write " . $configuration['GPIO'][$key]['pin'] . " " . 0);
             writeToLog("GPIO pin " . $configuration['GPIO'][$key]['pin'] . " set to OFF");
         }
-
+    }
+    
 }
 
  ?>
