@@ -1,0 +1,21 @@
+<md-content ng-controller="SensorValuesController as vm" layout-align="center center" style="height: 160px;">
+
+	<div style="height: 50px; line-height: 50px;" title="Temperature">
+		<img src="assets/images/temperature.png" style="vertical-align: middle; margin-left: 20px;" width="40" height="40">
+		<div style="display: inline-block; margin-left: 10px; width: 120px;">Temperature</div>
+		<span style="font-size: 20px;"><b><span ng-bind="vm.temperature"></span>°C</b></span>
+	</div>
+
+	<div style="height: 50px; line-height: 50px;" title="Humidity">
+		<img src="assets/images/humidity.png" style="vertical-align: middle; margin-left: 20px;" width="40" height="40">
+		<div style="display: inline-block; margin-left: 10px; width: 120px;">Humidity</div>
+		<span style="font-size: 20px;"><b><span ng-bind="vm.humidity"></span>%</b></span>
+	</div>
+
+	<div style="height: 50px; line-height: 50px;" title="Soil Moisture">
+		<img src="assets/images/moisture.png" style="vertical-align: middle; margin-left: 20px;" width="40" height="40">
+		<div style="display: inline-block; margin-left: 10px; width: 120px;">Soil Moisture</div>
+		<span style="font-size: 20px;"><b><span ng-bind="vm.moisture"></span>%</b></span>
+	</div>
+
+</md-content>

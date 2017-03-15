@@ -1,0 +1,6 @@
+{
+	"main_light": true,
+	"auxiliary_light": true,
+	"fan": true,
+	"pump": false
+}

@@ -1,0 +1,35 @@
+<md-content ng-controller="ControlPanelController as vm" layout-align="center center">
+    
+	<div>
+		<label class="switch">
+			<input type="checkbox" ng-model="switch_main_light">
+			<div class="slider" ng-click="click_switch()"></div>
+		</label>
+		Main Light
+	</div>
+	
+	<div>
+		<label class="switch">
+			<input type="checkbox" ng-model="switch_auxiliary_light">
+			<div class="slider" ng-click="click_switch()"></div>
+		</label>
+		Auxiliary Light
+	</div>
+
+	<div>
+		<label class="switch">
+			<input type="checkbox" ng-model="switch_fan">
+			<div class="slider" ng-click="click_switch()"></div>
+		</label>
+		Fan
+	</div>
+	
+	<div>
+		<label class="switch">
+			<input type="checkbox" ng-model="switch_pump">
+			<div class="slider" ng-click="click_switch()"></div>
+		</label>
+		Pump
+	</div>
+	
+</md-content>

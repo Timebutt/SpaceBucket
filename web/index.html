@@ -1,0 +1,68 @@
+<!doctype html>
+<html class="no-js" ng-app="angularMaterialAdmin">
+  <head>
+    <meta charset="utf-8">
+    <title>Angular Material Dashboard</title>
+    <meta name="description" content="Angular admin dashboard with material design">
+    <meta name="author" content="flatlogic.com">
+    <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- run `gulp wiredep` to automaticaly populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <link rel="stylesheet" href="css/angular-material.min.css" />
+    <link rel="stylesheet" href="app/index.css">
+
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- css files will be automaticaly insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 10]>
+      <p>You are using an <strong>outdated</strong> browser. Please
+        <a href="http://browsehappy.com/">upgrade your browser</a>
+        to improve your experience.</p>
+    <![endif]-->
+
+    <div ui-view layout="row" layout-fill></div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.csv.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-animate.min.js"></script>
+    <script src="js/angular-cookies.min.js"></script>
+    <script src="js/angular-touch.min.js"></script>
+    <script src="js/angular-sanitize.min.js"></script>
+    <script src="js/angular-ui-router.min.js"></script>
+    <script src="js/angular-aria.min.js"></script>
+    <script src="js/angular-material.min.js"></script>
+    <script src="js/angular-mocks.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/angular-chart.min.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/components/services/NavService.js"></script>
+    <script src="app/components/directives/panelWidget.js"></script>
+    <script src="app/controllers/SensorValuesController.js"></script>
+    <script src="app/controllers/PowerController.js"></script>
+    <script src="app/controllers/FeedController.js"></script>
+    <script src="app/controllers/MainController.js"></script>
+    <script src="app/controllers/ControlPanelController.js"></script>
+    <script src="app/controllers/ConfigurationController.js"></script>
+    <script src="app/controllers/ChartsController.js"></script>
+    <script src="app/index.js"></script>
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+  </body>
+</html>
