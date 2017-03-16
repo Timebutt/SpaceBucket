@@ -50,9 +50,10 @@ def process_moisture_adc(sensor_reading):
   elif sensor_reading <= 0.5:
     return 0;
   else:
+      # TO-DO: implement function
+      return 50;
 
 def read_sensors():
-
 	# Make sure every log uses the same timestamp (easier for plotting later on)
 	now = datetime.today()
 
