@@ -1,8 +1,8 @@
 # Written by David Neuy
 # Version 0.1.0 @ 03.12.2014
 # This script was first published at: http://www.home-automation-community.com/
-# You may republish it as is or publish a modified version only when you 
-# provide a link to 'http://www.home-automation-community.com/'. 
+# You may republish it as is or publish a modified version only when you
+# provide a link to 'http://www.home-automation-community.com/'.
 
 import os, sys, Adafruit_DHT, time, subprocess, signal, logging, json
 from Adafruit_ADS1x15 import ADS1x15
@@ -42,7 +42,7 @@ def open_file_ensure_header(file_path, mode, csv_header):
   if os.path.getsize(file_path) <= 0:
     write_header(f, csv_header)
   return f
-  
+
 # Convert the ADC moisture reading to a relative soil moisture level
 def process_moisture_adc(sensor_reading):
   if sensor_reading >= 3:
@@ -50,23 +50,26 @@ def process_moisture_adc(sensor_reading):
   elif sensor_reading <= 0.5:
     return 0;
   else:
-	
+
 def read_sensors():
 
 	# Make sure every log uses the same timestamp (easier for plotting later on)
 	now = datetime.today()
 
 	# Read soil moisture sensor (ADC value)
-	moisture = adc.readADCSingleEnded(0, gain, sps) / 1000
+	#moisture = adc.readADCSingleEnded(0, gain, sps) / 1000
+    moisture = 68;
 	if moisture is not None:
 		write_value(file_handler_moisture, now, moisture)
 
 	# Read DHT22 sensor (temperature and humidity)
-	humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO_pin)
-    if hum is not None and temp is not None:
+	#humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO_pin)
+    humidity = 72;
+    temperature = 17.2;
+    #if hum is not None and temp is not None:
 		write_value(file_handler_temperature, now, temperature)
 		write_value(file_handler_humidity, now, humidity)
-		
+
 	# Write current values to JSON file (for easy access with front end)
 	sensor_data = {}
 	sensor_data['humidity'] = humidity
@@ -80,8 +83,8 @@ logger = logging.getLogger('SpaceBucket')
 hdlr = logging.FileHandler('SpaceBucket.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
-logger.addHandler(hdlr) 
-		
+logger.addHandler(hdlr)
+
 # Create sensor LOG file handlers
 file_handler_temperature = open_file_ensure_header(hist_temperature_file_path, 'a', csv_header_temperature)
 file_handler_humidity  = open_file_ensure_header(hist_humidity_file_path, 'a', csv_header_humidity)
@@ -101,6 +104,3 @@ scheduler = BackgroundScheduler()
 scheduler.add_job(read_sensors, 'interval', seconds=interval)
 scheduler.start()
 logger.info('SpaceBucket successfully started!)
-
-
-
