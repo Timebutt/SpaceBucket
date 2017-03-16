@@ -30,36 +30,36 @@ ADS_gain					 = 4096 # +/- 4.096V
 
 
 def write_header(file_handle, csv_header):
-  file_handle.write(csv_header)
+    file_handle.write(csv_header)
 
 def write_value(file_handle, datetime, value):
-  line = csv_entry_format.format(datetime, value)
-  file_handle.write(line)
-  file_handle.flush()
+    line = csv_entry_format.format(datetime, value)
+    file_handle.write(line)
+    file_handle.flush()
 
 def open_file_ensure_header(file_path, mode, csv_header):
-  f = open(file_path, mode, os.O_NONBLOCK)
-  if os.path.getsize(file_path) <= 0:
-    write_header(f, csv_header)
-  return f
+    f = open(file_path, mode, os.O_NONBLOCK)
+    if os.path.getsize(file_path) <= 0:
+        write_header(f, csv_header)
+    return f
 
 # Convert the ADC moisture reading to a relative soil moisture level
 def process_moisture_adc(sensor_reading):
-  if sensor_reading >= 3:
-    return 100;
-  elif sensor_reading <= 0.5:
-    return 0;
-  else:
-      # TO-DO: implement function
-      return 50;
+    if sensor_reading >= 3:
+        return 100;
+    elif sensor_reading <= 0.5:
+        return 0;
+    else:
+        # TO-DO: implement function
+        return 50;
 
 def read_sensors():
 	# Make sure every log uses the same timestamp (easier for plotting later on)
-	now = datetime.today()
+    now = datetime.today()
 
-	# Read soil moisture sensor (ADC value)
+    # Read soil moisture sensor (ADC value)
 	#moisture = adc.readADCSingleEnded(0, gain, sps) / 1000
-    moisture = 68;
+    moisture = 68
     if moisture is not None:
         write_value(file_handler_moisture, now, moisture)
 
@@ -67,17 +67,17 @@ def read_sensors():
 	#humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO_pin)
     humidity = 72;
     temperature = 17.2;
-    #if hum is not None and temp is not None:
-		write_value(file_handler_temperature, now, temperature)
-		write_value(file_handler_humidity, now, humidity)
+    if hum is not None and temp is not None:
+        write_value(file_handler_temperature, now, temperature)
+        write_value(file_handler_humidity, now, humidity)
 
 	# Write current values to JSON file (for easy access with front end)
-	sensor_data = {}
-	sensor_data['humidity'] = humidity
-	sensor_data['temperature'] = temperature
-	sensor_data['moisture'] = moisture
-	with open(current_values_path, 'w') as outfile:
-		json.dump(sensor_data, outfile)
+    sensor_data = {}
+    sensor_data['humidity'] = humidity
+    sensor_data['temperature'] = temperature
+    sensor_data['moisture'] = moisture
+    with open(current_values_path, 'w') as outfile:
+        json.dump(sensor_data, outfile)
 
 # Create system LOG handler
 logger = logging.getLogger('SpaceBucket')
@@ -104,4 +104,4 @@ logger.info('Initiating SpaceBucket')
 scheduler = BackgroundScheduler()
 scheduler.add_job(read_sensors, 'interval', seconds=interval)
 scheduler.start()
-logger.info('SpaceBucket successfully started!)
+logger.info('SpaceBucket successfully started!')
