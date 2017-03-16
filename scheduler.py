@@ -60,8 +60,8 @@ def read_sensors():
 	# Read soil moisture sensor (ADC value)
 	#moisture = adc.readADCSingleEnded(0, gain, sps) / 1000
     moisture = 68;
-	if moisture is not None:
-		write_value(file_handler_moisture, now, moisture)
+    if moisture is not None:
+        write_value(file_handler_moisture, now, moisture)
 
 	# Read DHT22 sensor (temperature and humidity)
 	#humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO_pin)
