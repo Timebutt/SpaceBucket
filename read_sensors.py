@@ -12,25 +12,25 @@ from datetime import datetime, date
 from apscheduler.schedulers.background import BackgroundScheduler
 
 
-path			= "/home/pi/SpaceBucket/"
-sensor                       = Adafruit_DHT.AM2302 #DHT11/DHT22/AM2302
-GPIO_pin                     = 4
-sensor_name                  = "SpaceBucket"
-temperature_file_path   	 = "data/temperature_" + sensor_name + "_LOG.csv"
-humidity_file_path      	 = "data/humidity_" + sensor_name + "_LOG.csv"
-moisture_file_path			 = "data/moisture_" + sensor_name + "_LOG.csv"
-current_values_path			 = "data/sensor_values.json"
-log_file_path		     = "log/SpaceBucket.log"
-csv_header_temperature       = "date,temperature\n"
-csv_header_humidity          = "date,humidity\n"
-csv_header_moisture			 = "date,moisture\n"
-csv_entry_format             = "{:%Y-%m-%d %H:%M:%S},{:0.1f}\n"
-interval_sensors		     = 60
-interval_webcam				 = 500
-ADS1015 					 = 0x00 # 12-bit ADC
-ADS1115						 = 0x01	# 16-bit ADC
-ADS_sps						 = 250  # 250 samples per second
-ADS_gain					 = 4096 # +/- 4.096V
+path                    = "/home/pi/SpaceBucket/"
+sensor                  = Adafruit_DHT.AM2302 #DHT11/DHT22/AM2302
+GPIO_pin                = 18
+sensor_name             = "SpaceBucket"
+temperature_file_path   = "data/temperature_" + sensor_name + "_LOG.csv"
+humidity_file_path      = "data/humidity_" + sensor_name + "_LOG.csv"
+moisture_file_path      = "data/moisture_" + sensor_name + "_LOG.csv"
+current_values_path     = "data/sensor_values.json"
+log_file_path           = "log/SpaceBucket.log"
+csv_header_temperature  = "date,temperature\n"
+csv_header_humidity     = "date,humidity\n"
+csv_header_moisture     = "date,moisture\n"
+csv_entry_format        = "{:%Y-%m-%d %H:%M:%S},{:0.1f}\n"
+interval_sensors        = 60
+interval_webcam         = 500
+ADS1015                 = 0x00 # 12-bit ADC
+ADS1115                 = 0x01	# 16-bit ADC
+ADS_sps                 = 250  # 250 samples per second
+ADS_gain                = 4096 # +/- 4.096V
 
 
 def write_header(file_handle, csv_header):
@@ -75,8 +75,8 @@ file_handler_moisture = open_file_ensure_header(path + moisture_file_path, 'a', 
 #adc = ADS1x15(ic=ADS1115)
 
 # Ignore first 2 sensor values to improve measurement quality"
-#for x in range(2):
-#  Adafruit_DHT.read_retry(sensor, GPIO_pin)
+for x in range(2):
+    Adafruit_DHT.read_retry(sensor, GPIO_pin)
 
 # Read the sensors
 # Make sure every log uses the same timestamp (easier for plotting later on)
@@ -89,9 +89,7 @@ if moisture is not None:
     write_value(file_handler_moisture, now, moisture)
 
 # Read DHT22 sensor (temperature and humidity)
-#humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO_pin)
-humidity = 72;
-temperature = 17.2;
+humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO_pin)
 if humidity is not None and temperature is not None:
     write_value(file_handler_temperature, now, temperature)
     write_value(file_handler_humidity, now, humidity)
