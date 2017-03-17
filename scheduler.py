@@ -93,11 +93,11 @@ file_handler_moisture = open_file_ensure_header(moisture_file_path, 'a', csv_hea
 
 # Initialise the ADC using the default mode (use default I2C address)
 # Set this to ADS1015 or ADS1115 depending on the ADC you are using!
-adc = ADS1x15(ic=ADS1115)
+#adc = ADS1x15(ic=ADS1115)
 
 # Ignore first 2 sensor values to improve measurement quality"
-for x in range(2):
-  Adafruit_DHT.read_retry(sensor, GPIO_pin)
+#for x in range(2):
+#  Adafruit_DHT.read_retry(sensor, GPIO_pin)
 
 # Schedule a job that records temperature and humidity data every {interval} seconds
 logger.info('Initiating SpaceBucket')
