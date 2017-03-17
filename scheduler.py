@@ -21,7 +21,7 @@ csv_header_temperature       = "date,temperature\n"
 csv_header_humidity          = "date,humidity\n"
 csv_header_moisture			 = "date,moisture\n"
 csv_entry_format             = "{:%Y-%m-%d %H:%M:%S},{:0.1f}\n"
-interval_temp			     = 60
+interval_sensors		     = 60
 interval_webcam				 = 500
 ADS1015 					 = 0x00 # 12-bit ADC
 ADS1115						 = 0x01	# 16-bit ADC
@@ -102,6 +102,6 @@ file_handler_moisture = open_file_ensure_header(moisture_file_path, 'a', csv_hea
 # Schedule a job that records temperature and humidity data every {interval} seconds
 logger.info('Initiating SpaceBucket')
 scheduler = BackgroundScheduler()
-scheduler.add_job(read_sensors, 'interval', seconds=interval)
+scheduler.add_job(read_sensors, 'interval', seconds=interval_sensors)
 scheduler.start()
 logger.info('SpaceBucket successfully started!')
