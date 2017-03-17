@@ -79,6 +79,8 @@ def read_sensors():
     with open(current_values_path, 'w') as outfile:
         json.dump(sensor_data, outfile)
 
+    logger.info('Sensor values written')
+
 # Create system LOG handler
 logger = logging.getLogger('SpaceBucket')
 logger.setLevel(logging.INFO)
