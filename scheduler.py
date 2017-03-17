@@ -100,7 +100,7 @@ file_handler_moisture = open_file_ensure_header(moisture_file_path, 'a', csv_hea
 #  Adafruit_DHT.read_retry(sensor, GPIO_pin)
 
 # Schedule a job that records temperature and humidity data every {interval} seconds
-logger.info('Initiating SpaceBucket')
+logger.error('Initiating SpaceBucket')
 scheduler = BackgroundScheduler()
 scheduler.add_job(read_sensors, 'interval', seconds=interval_sensors)
 scheduler.start()
