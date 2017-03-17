@@ -106,5 +106,7 @@ file_handler_moisture = open_file_ensure_header(moisture_file_path, 'a', csv_hea
 logger.info('Initiating SpaceBucket')
 scheduler = BackgroundScheduler()
 scheduler.add_job(read_sensors, 'interval', seconds=interval_sensors)
-scheduler.start()
 logger.info('SpaceBucket successfully started!')
+scheduler.start()
+input("Press enter to exit.")
+    sched.shutdown()
