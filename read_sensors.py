@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # Written by David Neuy
 # Version 0.1.0 @ 03.12.2014
 # This script was first published at: http://www.home-automation-community.com/
@@ -10,6 +12,7 @@ from datetime import datetime, date
 from apscheduler.schedulers.background import BackgroundScheduler
 
 
+path			= "/home/pi/SpaceBucket/"
 sensor                       = Adafruit_DHT.AM2302 #DHT11/DHT22/AM2302
 GPIO_pin                     = 4
 sensor_name                  = "SpaceBucket"
@@ -17,6 +20,7 @@ temperature_file_path   	 = "data/temperature_" + sensor_name + "_LOG.csv"
 humidity_file_path      	 = "data/humidity_" + sensor_name + "_LOG.csv"
 moisture_file_path			 = "data/moisture_" + sensor_name + "_LOG.csv"
 current_values_path			 = "data/sensor_values.json"
+log_file_path		     = "log/SpaceBucket.log"
 csv_header_temperature       = "date,temperature\n"
 csv_header_humidity          = "date,humidity\n"
 csv_header_moisture			 = "date,moisture\n"
@@ -56,15 +60,15 @@ def process_moisture_adc(sensor_reading):
 # Create system LOG handler
 logger = logging.getLogger('SpaceBucket')
 logger.setLevel(logging.INFO)
-hdlr = logging.FileHandler('SpaceBucket.log')
-formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+hdlr = logging.FileHandler(path + log_file_path)
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', '%Y-%m-%d %H:%M:%S')
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr)
 
 # Create sensor LOG file handlers
-file_handler_temperature = open_file_ensure_header(temperature_file_path, 'a', csv_header_temperature)
-file_handler_humidity  = open_file_ensure_header(humidity_file_path, 'a', csv_header_humidity)
-file_handler_moisture = open_file_ensure_header(moisture_file_path, 'a', csv_header_moisture)
+file_handler_temperature = open_file_ensure_header(path + temperature_file_path, 'a', csv_header_temperature)
+file_handler_humidity  = open_file_ensure_header(path + humidity_file_path, 'a', csv_header_humidity)
+file_handler_moisture = open_file_ensure_header(path + moisture_file_path, 'a', csv_header_moisture)
 
 # Initialise the ADC using the default mode (use default I2C address)
 # Set this to ADS1015 or ADS1115 depending on the ADC you are using!
@@ -97,7 +101,7 @@ sensor_data = {}
 sensor_data['humidity'] = humidity
 sensor_data['temperature'] = temperature
 sensor_data['moisture'] = moisture
-with open(current_values_path, 'w') as outfile:
+with open(path + current_values_path, 'w') as outfile:
     json.dump(sensor_data, outfile)
 
 logger.info('Sensor values written')
