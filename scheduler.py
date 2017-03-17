@@ -81,6 +81,7 @@ def read_sensors():
 
 # Create system LOG handler
 logger = logging.getLogger('SpaceBucket')
+logger.setLevel(logging.INFO)
 hdlr = logging.FileHandler('SpaceBucket.log')
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 hdlr.setFormatter(formatter)
@@ -100,7 +101,7 @@ file_handler_moisture = open_file_ensure_header(moisture_file_path, 'a', csv_hea
 #  Adafruit_DHT.read_retry(sensor, GPIO_pin)
 
 # Schedule a job that records temperature and humidity data every {interval} seconds
-logger.error('Initiating SpaceBucket')
+logger.info('Initiating SpaceBucket')
 scheduler = BackgroundScheduler()
 scheduler.add_job(read_sensors, 'interval', seconds=interval_sensors)
 scheduler.start()
