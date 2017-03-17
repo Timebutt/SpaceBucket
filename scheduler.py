@@ -87,9 +87,9 @@ hdlr.setFormatter(formatter)
 logger.addHandler(hdlr)
 
 # Create sensor LOG file handlers
-file_handler_temperature = open_file_ensure_header(hist_temperature_file_path, 'a', csv_header_temperature)
-file_handler_humidity  = open_file_ensure_header(hist_humidity_file_path, 'a', csv_header_humidity)
-file_handler_moisture = open_file_ensure_header(hist_moisture_file_path, 'a', csv_header_moisture)
+file_handler_temperature = open_file_ensure_header(temperature_file_path, 'a', csv_header_temperature)
+file_handler_humidity  = open_file_ensure_header(humidity_file_path, 'a', csv_header_humidity)
+file_handler_moisture = open_file_ensure_header(moisture_file_path, 'a', csv_header_moisture)
 
 # Initialise the ADC using the default mode (use default I2C address)
 # Set this to ADS1015 or ADS1115 depending on the ADC you are using!
