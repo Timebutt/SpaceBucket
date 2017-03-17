@@ -22,7 +22,7 @@
 		function refreshSensorData() {
 			$http({
 			  method: 'GET',
-			  url: 'sensor_values.json'
+			  url: '/SpaceBucket/data/sensor_values.json'
 			}).then(function(response) {
 				vm.temperature = response.data.temperature;
 				vm.humidity = response.data.humidity;

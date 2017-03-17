@@ -96,8 +96,8 @@ if humidity is not None and temperature is not None:
 
 # Write current values to JSON file (for easy access with front end)
 sensor_data = {}
-sensor_data['humidity'] = humidity
-sensor_data['temperature'] = temperature
+sensor_data['humidity'] = '{0:.2f}'.format(humidity)
+sensor_data['temperature'] = '{0:.2f}'.format(temperature)
 sensor_data['moisture'] = moisture
 with open(path + current_values_path, 'w') as outfile:
     json.dump(sensor_data, outfile)

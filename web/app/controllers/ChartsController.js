@@ -10,7 +10,7 @@
         var vm = this;
 
 		// Get temperature data
-		$http.get("temperature_SpaceBucket_log.csv").then(function(response) {
+		$http.get("/SpaceBucket/data/temperature_SpaceBucket_LOG.csv").then(function(response) {
 			data = $.csv.toArrays(response.data);
 			data.splice(0,1);
 
@@ -19,7 +19,7 @@
 		});
 
 		// Get humidity data
-		$http.get("humidity_SpaceBucket_log.csv").then(function(response) {
+		$http.get("/SpaceBucket/data/humidity_SpaceBucket_LOG.csv").then(function(response) {
 			data = $.csv.toArrays(response.data);
 			data.splice(0,1);
 
@@ -28,7 +28,7 @@
 		});
 
 		// Get moisture data
-		$http.get("moisture_SpaceBucket_log.csv").then(function(response) {			
+		$http.get("/SpaceBucket/data/moisture_SpaceBucket_LOG.csv").then(function(response) {			
 			data = $.csv.toArrays(response.data);
 			data.splice(0,1);
 
