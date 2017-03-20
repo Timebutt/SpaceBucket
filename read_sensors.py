@@ -74,9 +74,13 @@ file_handler_moisture = open_file_ensure_header(path + moisture_file_path, 'a', 
 # Set this to ADS1015 or ADS1115 depending on the ADC you are using!
 #adc = ADS1x15(ic=ADS1115)
 
+print('hier al!')
+
 # Ignore first 2 sensor values to improve measurement quality"
 for x in range(2):
     Adafruit_DHT.read_retry(sensor, GPIO_pin)
+
+print('eerste gelezen')
 
 # Read the sensors
 # Make sure every log uses the same timestamp (easier for plotting later on)
