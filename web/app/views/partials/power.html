@@ -2,26 +2,29 @@
     <div style="height: 50px; line-height: 50px;" title="Main Light">
 		<img src="assets/images/sun.png" style="vertical-align: middle; margin-left: 20px;" width="40" height="40">
 		<div style="display: inline-block; margin-left: 10px; width: 120px;">Main Light</div>
-		<span><b><span ng-bind="vm.temperature"></span>240.1kWh</b></span>
+		<span style="display: inline-block; width: 120px; text-align: center;"><b><span ng-bind="powerMainLight"></span>kWh</b></span>
+        <b><span ng-bind="hoursMainLight"></span>h</b>
 	</div>
 
 	<div style="height: 50px; line-height: 50px;" title="Auxiliary Light">
 	<img src="assets/images/light.png" style="vertical-align: middle; margin-left: 20px;" width="40" height="40">
 		<div style="display: inline-block; margin-left: 10px; width: 120px;">Auxiliary Light</div>
-		<span><b><span ng-bind="vm.humidity"></span>5.20kWh</b></span>
+		<span style="display: inline-block; width: 120px; text-align: center;"><b><span ng-bind="powerAuxiliaryLight"></span>kWh</b></span>
+        <b><span ng-bind="hoursAuxiliaryLight"></span>h</b>
 	</div>
 
 	<div style="height: 50px; line-height: 50px;" title="Fan">
 		<img src="assets/images/fan.jpg" style="vertical-align: middle; margin-left: 20px;" width="40" height="40">
 		<div style="display: inline-block; margin-left: 10px; width: 120px;">Fan</div>
-		<span><b><span ng-bind="vm.moisture"></span>1.1kWh</b></span>
+		<span style="display: inline-block; width: 120px; text-align: center;"><b><span ng-bind="powerFan"></span>kWh</b></span>
+        <b><span ng-bind="hoursFan"></span>h</b>
 	</div>
 
 	<div style="height: 50px; line-height: 50px;" title="Pump">
 		<img src="assets/images/pump.png" style="vertical-align: middle; margin-left: 20px;" width="40" height="40">
 		<div style="display: inline-block; margin-left: 10px; width: 120px;">Pump</div>
-		<span><b><span ng-bind="vm.moisture"></span>3.2kWh</b></span>
-		<span><b>4.1 h</b></span>
+		<span style="display: inline-block; width: 120px; text-align: center;"><b><span ng-bind="powerPump"></span>kWh</b></span>
+        <b><span ng-bind="hoursPump"></span>h</b>
 	</div>
 
 </md-content>

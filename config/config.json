@@ -7,6 +7,13 @@
 		"auxiliary_light": 2,
 		"fan": 3,
 		"pump": 5
+	},
+	"sensorInterval": 10,
+	"powerConsumption": {
+		"main_light": 40,
+		"auxiliary_light": 15,
+		"fan": 1,
+		"pump": 4
 	}
 
 }
