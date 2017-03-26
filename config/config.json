@@ -3,10 +3,10 @@
 	"IP": "192.168.0.148",
 	"port": "8080",
 	"GPIO": {
-		"main_light": 1,
+		"main_light": 4,
 		"auxiliary_light": 2,
 		"fan": 3,
-		"pump": 4
+		"pump": 5
 	}
 
 }
