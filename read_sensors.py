@@ -74,20 +74,28 @@ file_handler_moisture = open_file_ensure_header(path + moisture_file_path, 'a', 
 # Set this to ADS1015 or ADS1115 depending on the ADC you are using!
 #adc = ADS1x15(ic=ADS1115)
 
-print('hier al!')
-
 # Ignore first 2 sensor values to improve measurement quality"
 for x in range(2):
     Adafruit_DHT.read_retry(sensor, GPIO_pin)
 
-print('eerste gelezen')
-
-# Read the sensors
 # Make sure every log uses the same timestamp (easier for plotting later on)
 now = datetime.today()
 
+# Check if any switch needs to be operated
+with open(path + 'config/switches.json') as switchFile:
+    switchConfig = json.load(switchFile)
+    for switch in switchConfig:
+
+        if switchConfig[switch]['enabled'] is True and switchConfig[switch]['vegetative']['on'] == (now.strftime('%H:%M') + ':00'):
+		subprocess.call(['gpio', 'write', str(switchConfig[switch]['GPIO-PIN']), '0'])
+		logger.info('Switch ' + switch + ' enabled. Rise and shine!')
+        elif switchConfig[switch]['enabled'] is True and switchConfig[switch]['vegetative']['off'] == (now.strftime('%H:%M') + ':00'):
+		subprocess.call(['gpio', 'write', str(switchConfig[switch]['GPIO-PIN']), '1'])
+                logger.info('Switch ' + switch + ' disabled. Nighty night!')
+
+
 # Read soil moisture sensor (ADC value)
-#moisture = adc.readADCSingleEnded(0, gain, sps) / 1000
+# moisture = adc.readADCSingleEnded(0, gain, sps) / 1000
 moisture = 68
 if moisture is not None:
     write_value(file_handler_moisture, now, moisture)

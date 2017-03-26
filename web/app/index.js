@@ -29,6 +29,15 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies',
           title: 'Profile'
         }
       })
+      .state('home.log', {
+        url: '/log',
+        templateUrl: 'app/views/log.html',
+        controller: 'LogController',
+        controllerAs: 'vm',
+        data: {
+          title: 'Log'
+        }
+      })
       .state('home.configuration', {
         url: '/configuration',
         controller: 'ConfigurationController',

@@ -5,7 +5,7 @@
 	app.run(function($rootScope, $http) {
 
 		// Fetch system configuration
-		$http.get("configuration.json").then(function(response) {
+		$http.get("/config/config.json").then(function(response) {
 
 			$rootScope.CONFIG = response.data;
 
