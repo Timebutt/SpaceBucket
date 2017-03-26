@@ -20,7 +20,12 @@
         sref: '.profile'
       },
       {
-        name: 'Configuration',
+          name: 'Log',
+          icon: 'event_note',
+          sref: '.log'
+      },
+      {
+        name: 'Settings',
         icon: 'settings',
         sref: '.configuration'
       }
