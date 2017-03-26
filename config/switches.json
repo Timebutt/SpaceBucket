@@ -1,0 +1,27 @@
+{
+	"main_light": {
+		"enabled": true,
+		"GPIO-PIN": 4,
+		"vegetative": {
+			"on": "18:00:00",
+			"off": "10:00:00"
+		},
+		"flowering": {
+			"on": "18:00:00",
+			"off": "06:00:00"
+		}
+	},
+
+	"axiliary_light": {
+		"enabled": false,
+		"GPIO-PIN": 10,
+		"vegetative": {
+			"on": "18:00:00",
+			"off": "10:00:00"
+		},
+		"flowering": {
+			"on": "18:00:00",
+			"off": "06:00:00"
+		}
+	}
+}
