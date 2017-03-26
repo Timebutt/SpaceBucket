@@ -1,11 +1,5 @@
 #!/usr/bin/python
 
-# Written by David Neuy
-# Version 0.1.0 @ 03.12.2014
-# This script was first published at: http://www.home-automation-community.com/
-# You may republish it as is or publish a modified version only when you
-# provide a link to 'http://www.home-automation-community.com/'.
-
 import os, sys, Adafruit_DHT, time, subprocess, signal, logging, json
 from Adafruit_ADS1x15 import ADS1x15
 from datetime import datetime, date
@@ -14,13 +8,15 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 path                    = "/home/pi/SpaceBucket/"
 sensor                  = Adafruit_DHT.AM2302 #DHT11/DHT22/AM2302
-GPIO_pin                = 18
+GPIO_pin                = 4
 sensor_name             = "SpaceBucket"
 temperature_file_path   = "data/temperature_" + sensor_name + "_LOG.csv"
 humidity_file_path      = "data/humidity_" + sensor_name + "_LOG.csv"
 moisture_file_path      = "data/moisture_" + sensor_name + "_LOG.csv"
 current_values_path     = "data/sensor_values.json"
 log_file_path           = "log/SpaceBucket.log"
+config_file_path	= "config/config.json"
+power_file_path 	= "data/power.json"
 csv_header_temperature  = "date,temperature\n"
 csv_header_humidity     = "date,humidity\n"
 csv_header_moisture     = "date,moisture\n"
@@ -65,6 +61,10 @@ formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', '%Y-%
 hdlr.setFormatter(formatter)
 logger.addHandler(hdlr)
 
+# Read the config file
+with open(path + config_file_path) as configFile:
+    config = json.load(configFile)
+
 # Create sensor LOG file handlers
 file_handler_temperature = open_file_ensure_header(path + temperature_file_path, 'a', csv_header_temperature)
 file_handler_humidity  = open_file_ensure_header(path + humidity_file_path, 'a', csv_header_humidity)
@@ -80,6 +80,15 @@ for x in range(2):
 
 # Make sure every log uses the same timestamp (easier for plotting later on)
 now = datetime.today()
+
+# If a switch is on, add the time since last run of this script as 'on time'
+with open(path + power_file_path) as powerFile:
+    powerItems = json.load(powerFile)
+    for powerItem in powerItems:
+	if int(subprocess.check_output(['gpio', 'read', str(config['GPIO'][powerItem])])) == 0:
+	    powerItems[powerItem] = powerItems[powerItem] + config['sensorInterval']
+with open(path + power_file_path, 'w') as powerFile:
+    json.dump(powerItems, powerFile)
 
 # Check if any switch needs to be operated
 with open(path + 'config/switches.json') as switchFile:
